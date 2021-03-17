@@ -1,23 +1,23 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import appRoutes from './app-routes';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './components/main/main.component';
 import { AboutComponent } from './components/about/about.component';
 import { HeaderComponent } from './components/header/header.component';
-
-const appRoutes: Routes = [
-  { path: '', component: MainComponent },
-  { path: 'about', component: AboutComponent },
-];
+import { TodoItemPageComponent } from './components/todo-item-page/todo-item-page.component';
+import { Page404Component } from './components/page404/page404.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     AboutComponent,
-    HeaderComponent
+    HeaderComponent,
+    TodoItemPageComponent,
+    Page404Component
   ],
   imports: [
     BrowserModule,
