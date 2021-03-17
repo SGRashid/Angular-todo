@@ -1,9 +1,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './components/main/main.component';
-import { AboutComponent } from './componets/about/about.component';
+import { AboutComponent } from './components/about/about.component';
+import { from } from 'rxjs';
+
+const appRoutes: Routes = [
+  { path: '', component: MainComponent },
+  { path: 'about', component: AboutComponent },
+];
 
 @NgModule({
   declarations: [
@@ -12,7 +19,8 @@ import { AboutComponent } from './componets/about/about.component';
     AboutComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(appRoutes),
   ],
   providers: [],
   bootstrap: [AppComponent]
