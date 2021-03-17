@@ -1,9 +1,16 @@
 .header {
     display: flex;
     flex-direction: row;
-    justify-content: start;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: darkmagenta;
+    height: 35px;
 
     &-item {
         margin-left: 25px;
+
+        a {
+            text-decoration: none;
+        }
     }
 }
