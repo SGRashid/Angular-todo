@@ -1,0 +1,9 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+
+    &-item {
+        margin-left: 25px;
+    }
+}
