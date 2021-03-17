@@ -5,7 +5,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { MainComponent } from './components/main/main.component';
 import { AboutComponent } from './components/about/about.component';
-import { from } from 'rxjs';
 import { HeaderComponent } from './components/header/header.component';
 
 const appRoutes: Routes = [
