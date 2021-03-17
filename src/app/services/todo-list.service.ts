@@ -14,5 +14,9 @@ export class TodoListService {
   public getTodoList(): ITodoItem[] {
     return this._todoList;
   }
+
+  public getTodoItem(id: number) {
+    return this._todoList.find(todo => todo.id === id);
+  } 
   
 }

@@ -9,7 +9,7 @@ import { Page404Component } from './components/page404/page404.component';
 const appRoutes: Routes = [
     { path: '', component: MainComponent },
     { path: 'about', component: AboutComponent },
-    { path: 'todo-item/:index', component: TodoItemPageComponent },
+    { path: 'todo-item/:id', component: TodoItemPageComponent },
     { path: '**', component: Page404Component },
   ];
 
