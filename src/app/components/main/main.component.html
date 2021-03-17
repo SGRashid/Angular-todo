@@ -1,1 +1,7 @@
-<p>main works!</p>
+<div class="main">
+    <div class="todo-item" *ngFor="let item of todoList">
+        <p class="todo-item-title">{{ item.title }}</p>
+        <p class="todo-item-description">{{ item.description }}</p>
+        <p class="todo-item-date">{{ item.date }}</p>
+    </div>
+</div>
