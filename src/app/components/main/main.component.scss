@@ -9,5 +9,11 @@
         padding: 10px;
         max-width: 450px;
         margin: 0 auto 15px;
+
+        &-title {
+            font-size: 21px;
+            font-weight: bold;
+            color: lightslategray;
+        }
     }
 }

@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ITodoItem } from '../../dataTypes';
-
-const todoList: ITodoItem[] = [
-  { title: 'Купить хлеб', description: 'Сходи в магазин и купи хлеб', date: new Date() },
-  { title: 'Купить хлеб', description: 'Сходи в магазин и купи хлеб', date: new Date() },
-  { title: 'Купить хлеб', description: 'Сходи в магазин и купи хлеб', date: new Date() },
-];
+import { TodoListService } from '../../services/todo-list.service';
 
 @Component({
   selector: 'app-main',
@@ -14,11 +9,12 @@ const todoList: ITodoItem[] = [
 })
 export class MainComponent implements OnInit {
 
-  todoList = todoList;
+  todoList: ITodoItem[];
 
-  constructor() { }
+  constructor(public todoListService: TodoListService) {}
 
   ngOnInit(): void {
+    this.todoList = this.todoListService.getTodoList();
   }
 
 }
