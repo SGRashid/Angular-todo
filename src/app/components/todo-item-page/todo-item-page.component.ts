@@ -47,11 +47,16 @@ export class TodoItemPageComponent implements OnInit, OnDestroy {
   saveChanges(): void {
     this.changes = false;
     this.editMode = false;
+    this.todoListService.changeTodoItem(this.item);
   }
 
   toEditMode(): void {
     this.changes = true;
     this.editMode = true;
+  }
+
+  closeTask() {
+    this.todoListService.deleteToDoItem(this.item);
   }
 
 }

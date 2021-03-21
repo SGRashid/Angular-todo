@@ -38,6 +38,7 @@
     <button
         class="todo-item-page-close-task btn"
         [disabled]="!item.isComplited"
+        (click)="closeTask()"
     >
         Закрыть задачу
     </button>  
