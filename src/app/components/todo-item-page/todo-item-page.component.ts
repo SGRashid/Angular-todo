@@ -14,6 +14,7 @@ export class TodoItemPageComponent implements OnInit, OnDestroy {
 
   item: ITodoItem;
   changes = false;
+  editMode = false;
 
   private _sub = new Subscription();
 
@@ -41,6 +42,16 @@ export class TodoItemPageComponent implements OnInit, OnDestroy {
   changeStatus(): void {
     this.item.isComplited = !this.item.isComplited;
     this.changes = true;
+  }
+
+  saveChanges(): void {
+    this.changes = false;
+    this.editMode = false;
+  }
+
+  toEditMode(): void {
+    this.changes = true;
+    this.editMode = true;
   }
 
 }

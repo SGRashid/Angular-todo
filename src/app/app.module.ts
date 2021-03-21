@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { FormsModule }   from '@angular/forms';
 import appRoutes from './app-routes';
 
 import { AppComponent } from './app.component';
@@ -21,6 +22,7 @@ import { Page404Component } from './components/page404/page404.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     RouterModule.forRoot(appRoutes),
   ],
   providers: [],

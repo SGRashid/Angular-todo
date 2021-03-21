@@ -1,31 +1,37 @@
 <div class="todo-item-page">
-    <h2 class="todo-item-page-title">
+    <h2 class="todo-item-page-title" *ngIf="!editMode">
         {{item.title}}
-    </h2>
-    <p class="todo-item-page-description">
-       {{item.description}} 
-    </p>
-    <p class="todo-item-page-is-complited-true" *ngIf="item.isComplited">
-        Выполнено
-        <button
-            class="btn"
-            (click)="changeStatus()"
-        >
-            Отметить как не выполненую
+        <button 
+            class="btn-edit"
+            (click)="toEditMode()"
+            title="Редактировать"
+        >	
+        &#9998;
         </button>
+    </h2>
+    <input type="text" [(ngModel)]="item.title" *ngIf="editMode">
+    <p class="todo-item-page-description">
+       <span *ngIf="!editMode">{{item.description}}</span>
+        <textarea name="" id="" cols="30" rows="10"
+            [(ngModel)]="item.description"
+            *ngIf="editMode"
+        ></textarea>
     </p>
-    <p class="todo-item-page-is-complited-false" *ngIf="!item.isComplited">
-        <span>Активно</span>
+    <p class="todo-item-page-is-complited">
+        <span [ngClass]="{ 'complited': item.isComplited, 'active': !item.isComplited }">
+            {{ item.isComplited ? 'Выполнено' : 'Активно' }}
+        </span>
         <button
             class="btn"
             (click)="changeStatus()"
         >
-            Отметить как выполненую
+        {{ item.isComplited ? 'Отметить как невыполненную' : 'Отметить как выполненую' }}
         </button>
     </p>
     <button
         class="todo-item-page-save btn"
         [disabled]="!changes"
+        (click)="saveChanges()"
     >
         Сохранить изменения
     </button>
