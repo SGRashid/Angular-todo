@@ -67,4 +67,15 @@ export class TodoItemPageComponent implements OnInit, OnDestroy {
     this.todoListService.deleteToDoItem(this.item);
   }
 
+  getDate(date: Date): string {
+
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const dayOfMonth = date.getDate();
+
+    const stringDate = `${year}-${month}-${dayOfMonth}`;
+    console.log(stringDate);
+    return stringDate;
+  }
+
 }
