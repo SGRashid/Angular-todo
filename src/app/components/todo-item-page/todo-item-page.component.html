@@ -1,1 +1,26 @@
-<p>todo-item-page works!</p>
+<div class="todo-item-page">
+    <h2 class="todo-item-page-title">
+        {{item.title}}
+    </h2>
+    <p class="todo-item-page-description">
+       {{item.description}} 
+    </p>
+    <p class="todo-item-page-is-complited-true" *ngIf="item.isComplited">
+        Выполнено
+    </p>
+    <p class="todo-item-page-is-complited-false" *ngIf="!item.isComplited">
+        Активно
+    </p>
+    <button
+        class="todo-item-page-save"
+        [disabled]="true"
+    >
+        Сохранить изменения
+    </button>
+    <button
+        class="todo-item-page-close-task"
+        [disabled]="!item.isComplited"
+    >
+        Закрыть задачу
+    </button>  
+</div>

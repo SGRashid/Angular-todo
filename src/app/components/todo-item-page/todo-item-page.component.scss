@@ -1,0 +1,17 @@
+@import '../../../variables.scss';
+
+.todo-item-page {
+    margin: 20px 30px;
+
+    &-is-complited-true {
+        color: $green;
+    }
+
+    &-is-complited-false {
+        color: $red;
+    }
+
+    &-close-task {
+        margin-left: 15px;
+    }
+}
