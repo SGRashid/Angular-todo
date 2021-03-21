@@ -16,6 +16,7 @@ export class TodoItemPageComponent implements OnInit, OnDestroy {
   itemReservedCopy: ITodoItem;
   changes = false;
   editMode = false;
+  dateForInput: any;
 
   private _sub = new Subscription();
 
@@ -45,6 +46,12 @@ export class TodoItemPageComponent implements OnInit, OnDestroy {
     this.changes = true;
   }
 
+  setDate(date: any) {
+    this.item.date = new Date(date);
+    this.changes = true;
+    console.log(this.item.date);
+  }
+
   saveChanges(): void {
     this.changes = false;
     this.editMode = false;
@@ -65,17 +72,6 @@ export class TodoItemPageComponent implements OnInit, OnDestroy {
 
   closeTask() {
     this.todoListService.deleteToDoItem(this.item);
-  }
-
-  getDate(date: Date): string {
-
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const dayOfMonth = date.getDate();
-
-    const stringDate = `${year}-${month}-${dayOfMonth}`;
-    console.log(stringDate);
-    return stringDate;
   }
 
 }

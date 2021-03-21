@@ -17,7 +17,11 @@
             *ngIf="editMode"
         ></textarea>
     </p>
-    <input type="date" [value]="date.forInput(item.date)">
+    <input
+        type="date"
+        [ngModel]="item.date | date:'yyyy-MM-dd'"
+        (ngModelChange)="setDate($event)"
+    >
     <p class="todo-item-page-is-complited">
         <span [ngClass]="{ 'complited': item.isComplited, 'active': !item.isComplited }">
             {{ item.isComplited ? 'Выполнено' : 'Активно' }}

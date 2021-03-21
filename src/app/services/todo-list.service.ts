@@ -12,6 +12,7 @@ export class TodoListService {
   constructor() { }
 
   public getTodoList(): ITodoItem[] {
+    console.log(this._todoList);
     return this._todoList;
   }
 
@@ -21,9 +22,7 @@ export class TodoListService {
   }
 
   public changeTodoItem(item: ITodoItem) {
-    this._todoList = this._todoList.map(elem => {
-      if (elem.id === item.id) return item;
-    });
+    this._todoList = this._todoList.map(elem => elem.id === item.id ? item : elem);
   }
 
   deleteToDoItem(item) {
