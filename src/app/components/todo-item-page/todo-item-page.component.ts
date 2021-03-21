@@ -13,6 +13,7 @@ import { Subscription } from 'rxjs';
 export class TodoItemPageComponent implements OnInit, OnDestroy {
 
   item: ITodoItem;
+  changes = false;
 
   private _sub = new Subscription();
 
@@ -35,6 +36,11 @@ export class TodoItemPageComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this._sub.unsubscribe();
+  }
+
+  changeStatus(): void {
+    this.item.isComplited = !this.item.isComplited;
+    this.changes = true;
   }
 
 }

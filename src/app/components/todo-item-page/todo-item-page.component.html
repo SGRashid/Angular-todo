@@ -7,18 +7,30 @@
     </p>
     <p class="todo-item-page-is-complited-true" *ngIf="item.isComplited">
         Выполнено
+        <button
+            class="btn"
+            (click)="changeStatus()"
+        >
+            Отметить как не выполненую
+        </button>
     </p>
     <p class="todo-item-page-is-complited-false" *ngIf="!item.isComplited">
-        Активно
+        <span>Активно</span>
+        <button
+            class="btn"
+            (click)="changeStatus()"
+        >
+            Отметить как выполненую
+        </button>
     </p>
     <button
-        class="todo-item-page-save"
-        [disabled]="true"
+        class="todo-item-page-save btn"
+        [disabled]="!changes"
     >
         Сохранить изменения
     </button>
     <button
-        class="todo-item-page-close-task"
+        class="todo-item-page-close-task btn"
         [disabled]="!item.isComplited"
     >
         Закрыть задачу
