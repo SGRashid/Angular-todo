@@ -13,6 +13,7 @@ import { Subscription } from 'rxjs';
 export class TodoItemPageComponent implements OnInit, OnDestroy {
 
   item: ITodoItem;
+  itemReservedCopy: ITodoItem;
   changes = false;
   editMode = false;
 
@@ -29,7 +30,7 @@ export class TodoItemPageComponent implements OnInit, OnDestroy {
       .subscribe(res => {
         const id = Number(res.id);
         this.item = this.todoListService.getTodoItem(id);
-        console.log(this.item);
+        this.itemReservedCopy = Object.assign({}, this.item);
       });
 
       this._sub.add(routeSub);
@@ -47,7 +48,14 @@ export class TodoItemPageComponent implements OnInit, OnDestroy {
   saveChanges(): void {
     this.changes = false;
     this.editMode = false;
+    this.itemReservedCopy = Object.assign({}, this.item);
     this.todoListService.changeTodoItem(this.item);
+  }
+
+  cancelChanges(): void {
+    this.item = Object.assign({}, this.itemReservedCopy);
+    this.changes = false;
+    this.editMode = false;
   }
 
   toEditMode(): void {

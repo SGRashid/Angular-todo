@@ -36,6 +36,11 @@
         Сохранить изменения
     </button>
     <button
+        class="btn"
+        *ngIf="changes"
+        (click)="cancelChanges()"
+    >Отменить изменения</button>
+    <button
         class="todo-item-page-close-task btn"
         [disabled]="!item.isComplited"
         (click)="closeTask()"
