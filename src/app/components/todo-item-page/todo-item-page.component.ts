@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TodoListService } from '../../services/todo-list.service';
 import { DateService } from '../../services/date.service';
-import { ActivatedRoute} from '@angular/router';
+import { Router, ActivatedRoute} from '@angular/router';
 import { ITodoItem } from 'src/app/dataTypes';
 import { Subscription } from 'rxjs';
 
@@ -16,19 +16,25 @@ export class TodoItemPageComponent implements OnInit, OnDestroy {
   itemReservedCopy: ITodoItem;
   changes = false;
   editMode = false;
-  dateForInput: any;
+  createMode = false;
 
   private _sub = new Subscription();
 
   constructor(
     public todoListService: TodoListService,
     public date: DateService,
-    private route: ActivatedRoute,
-  ) { }
+    private _route: ActivatedRoute,
+    private _angularRouter: Router,
+  ) {}
 
   ngOnInit(): void {
-    const routeSub = this.route.params
+    const routeSub = this._route.params
       .subscribe(res => {
+        if (res.id === 'new') {
+          this.activateCreateMod();
+          return;
+        }
+
         const id = Number(res.id);
         this.item = this.todoListService.getTodoItem(id);
         this.itemReservedCopy = Object.assign({}, this.item);
@@ -39,6 +45,22 @@ export class TodoItemPageComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this._sub.unsubscribe();
+  }
+
+  activateCreateMod() {
+    const dateNow = new Date();
+    
+    this.item = {
+      id: dateNow.getTime(),
+      date: dateNow,
+      isComplited: false,
+      title: '',
+      description: ''
+    };
+
+    this.editMode = true;
+    this.createMode = true;
+    this.changes = true;
   }
 
   changeStatus(): void {
@@ -72,6 +94,19 @@ export class TodoItemPageComponent implements OnInit, OnDestroy {
 
   closeTask() {
     this.todoListService.deleteToDoItem(this.item);
+    this._navigateToMain();
   }
+
+  createNewItem(item: ITodoItem): void {
+    if (!item.title || !item.description) {
+      alert('Заполните все поля');
+      return;
+    }
+
+    this.todoListService.addNewItem(item);
+    this._navigateToMain();
+  }
+
+  private _navigateToMain = (): void => void this._angularRouter.navigate(['']);
 
 }

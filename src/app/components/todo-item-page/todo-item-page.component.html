@@ -22,34 +22,39 @@
         [ngModel]="item.date | date:'yyyy-MM-dd'"
         (ngModelChange)="setDate($event)"
     >
-    <p class="todo-item-page-is-complited">
-        <span [ngClass]="{ 'complited': item.isComplited, 'active': !item.isComplited }">
-            {{ item.isComplited ? 'Выполнено' : 'Активно' }}
-        </span>
+    <ng-template *ngIf="!createMode">
+        <p class="todo-item-page-is-complited">
+            <span [ngClass]="{ 'complited': item.isComplited, 'active': !item.isComplited }">
+                {{ item.isComplited ? 'Выполнено' : 'Активно' }}
+            </span>
+            <button
+                class="btn"
+                (click)="changeStatus()"
+            >
+            {{ item.isComplited ? 'Отметить как невыполненную' : 'Отметить как выполненую' }}
+            </button>
+        </p>
+        <button
+            class="todo-item-page-save btn"
+            [disabled]="!changes"
+            (click)="saveChanges()"
+        >
+            Сохранить изменения
+        </button>
         <button
             class="btn"
-            (click)="changeStatus()"
+            *ngIf="changes"
+            (click)="cancelChanges()"
+        >Отменить изменения</button>
+        <button
+            class="todo-item-page-close-task btn"
+            [disabled]="!item.isComplited"
+            (click)="closeTask()"
         >
-        {{ item.isComplited ? 'Отметить как невыполненную' : 'Отметить как выполненую' }}
+            Закрыть задачу
         </button>
-    </p>
-    <button
-        class="todo-item-page-save btn"
-        [disabled]="!changes"
-        (click)="saveChanges()"
-    >
-        Сохранить изменения
-    </button>
-    <button
-        class="btn"
-        *ngIf="changes"
-        (click)="cancelChanges()"
-    >Отменить изменения</button>
-    <button
-        class="todo-item-page-close-task btn"
-        [disabled]="!item.isComplited"
-        (click)="closeTask()"
-    >
-        Закрыть задачу
-    </button>  
+    </ng-template>
+    <div class="create">
+        <button (click)="createNewItem(item)">Создать новую задачу</button>
+    </div>
 </div>

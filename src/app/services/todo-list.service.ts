@@ -12,7 +12,6 @@ export class TodoListService {
   constructor() { }
 
   public getTodoList(): ITodoItem[] {
-    console.log(this._todoList);
     return this._todoList;
   }
 
@@ -29,6 +28,10 @@ export class TodoListService {
     if (!item.isComplited) return;
     this._todoList = this._todoList.filter(elem => elem.id !== item.id);
     console.log(42);
+  }
+
+  addNewItem(item: ITodoItem): void {
+    this._todoList.push(item);
   }
   
 }
