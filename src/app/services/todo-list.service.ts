@@ -7,9 +7,17 @@ import { todoList } from '../todo-config';
 })
 export class TodoListService {
 
-  private _todoList: ITodoItem[] = todoList;
+  private _todoList: ITodoItem[] = localStorage.todoList ? this._getFromLocalStorage() : todoList;
 
   constructor() { }
+
+  private _getFromLocalStorage() {
+    return JSON.parse(localStorage.todoList).map(todo => ({ ...todo, date: new Date(todo.date) }) );
+  }
+
+  private _addToLocalStorage() {
+    localStorage.setItem('todoList', JSON.stringify(this._todoList));
+  }
 
   public getTodoList(): ITodoItem[] {
     return this._todoList;
@@ -22,19 +30,23 @@ export class TodoListService {
 
   public changeTodoItem(item: ITodoItem) {
     this._todoList = this._todoList.map(elem => elem.id === item.id ? item : elem);
+    this._addToLocalStorage();
   }
 
   public deleteToDoItem(item) {
     if (!item.isComplited) return;
     this._todoList = this._todoList.filter(elem => elem.id !== item.id);
+    this._addToLocalStorage();
   }
 
   public addNewItem(item: ITodoItem): void {
     this._todoList.push(item);
+    this._addToLocalStorage();
   }
 
   public setTodoList(list: ITodoItem[]): void {
     this._todoList = list;
+    this._addToLocalStorage();
   }
   
 }
