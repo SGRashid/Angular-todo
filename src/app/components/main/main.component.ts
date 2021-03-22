@@ -25,8 +25,8 @@ export class MainComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    console.log(event);
     moveItemInArray(this.todoList, event.previousIndex, event.currentIndex);
+    this.todoListService.setTodoList(this.todoList);
   }
 
 }

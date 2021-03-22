@@ -24,14 +24,18 @@ export class TodoListService {
     this._todoList = this._todoList.map(elem => elem.id === item.id ? item : elem);
   }
 
-  deleteToDoItem(item) {
+  public deleteToDoItem(item) {
     if (!item.isComplited) return;
     this._todoList = this._todoList.filter(elem => elem.id !== item.id);
     console.log(42);
   }
 
-  addNewItem(item: ITodoItem): void {
+  public addNewItem(item: ITodoItem): void {
     this._todoList.push(item);
+  }
+
+  public setTodoList(list: ITodoItem[]): void {
+    this._todoList = list;
   }
   
 }
