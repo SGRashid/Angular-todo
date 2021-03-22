@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ITodoItem } from '../../dataTypes';
 import { TodoListService } from '../../services/todo-list.service';
 import { DateService } from '../../services/date.service';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+ 
+
 
 @Component({
   selector: 'app-main',
@@ -19,6 +22,11 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
     this.todoList = this.todoListService.getTodoList();
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    console.log(event);
+    moveItemInArray(this.todoList, event.previousIndex, event.currentIndex);
   }
 
 }

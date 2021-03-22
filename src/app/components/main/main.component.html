@@ -1,5 +1,6 @@
-<div class="main">
-    <div class="todo-item" *ngFor="let item of todoList">
+<div cdkDropList class="main" (cdkDropListDropped)="drop($event)">
+    <div class="todo-item" *ngFor="let item of todoList" cdkDrag>
+        <div *cdkDragPlaceholder></div>
         <p class="todo-item-title">{{ item.title }}</p>
         <p class="todo-item-description">{{ item.description }}</p>
         <p class="todo-item-date">{{ date.ru(item.date) }}</p>
