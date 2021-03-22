@@ -15,6 +15,9 @@ export class MainComponent implements OnInit {
 
   todoList: ITodoItem[];
 
+  private _now = new Date();
+  private _threeDaysAfter = new Date();
+
   constructor(
     public todoListService: TodoListService,
     public date: DateService,
@@ -22,6 +25,7 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
     this.todoList = this.todoListService.getTodoList();
+    this._threeDaysAfter.setDate(this._threeDaysAfter.getDate() + 3);
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -29,4 +33,11 @@ export class MainComponent implements OnInit {
     this.todoListService.setTodoList(this.todoList);
   }
 
+  getDateCssClass(date: Date): string {
+    
+    if (date.getTime() < this._now.getTime()) return 'red';
+    if (date.getTime() < this._threeDaysAfter.getTime()) return 'yellow'
+    
+    return '';
+  } 
 }

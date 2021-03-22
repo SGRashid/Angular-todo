@@ -3,9 +3,9 @@
         <div *cdkDragPlaceholder></div>
         <p class="todo-item-title">{{ item.title }}</p>
         <p class="todo-item-description">{{ item.description }}</p>
-        <p class="todo-item-date">{{ date.ru(item.date) }}</p>
+        <p class="todo-item-date {{getDateCssClass(item.date)}}">{{ date.ru(item.date) }}</p>
         <p>
-            <a [routerLink]="['todo-item', item.id]">Подробнее...</a>
+            <a [routerLink]="['todo-item', item.id]">Смотреть/Редактировать...</a>
         </p>
     </div>
     <a class="todo-item" routerLink="todo-item/new">+ Добавить новую задачу</a>

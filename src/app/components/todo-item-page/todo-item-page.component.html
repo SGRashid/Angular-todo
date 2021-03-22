@@ -22,7 +22,7 @@
         [ngModel]="item.date | date:'yyyy-MM-dd'"
         (ngModelChange)="setDate($event)"
     >
-    <ng-template *ngIf="!createMode">
+    <div *ngIf="!createMode">
         <p class="todo-item-page-is-complited">
             <span [ngClass]="{ 'complited': item.isComplited, 'active': !item.isComplited }">
                 {{ item.isComplited ? 'Выполнено' : 'Активно' }}
@@ -53,8 +53,8 @@
         >
             Закрыть задачу
         </button>
-    </ng-template>
-    <div class="create">
+    </div>
+    <div class="create" *ngIf="createMode">
         <button (click)="createNewItem(item)">Создать новую задачу</button>
     </div>
 </div>

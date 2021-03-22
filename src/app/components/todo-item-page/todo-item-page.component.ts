@@ -48,6 +48,8 @@ export class TodoItemPageComponent implements OnInit, OnDestroy {
   }
 
   activateCreateMod() {
+
+    console.log(22222);
     const dateNow = new Date();
     
     this.item = {
