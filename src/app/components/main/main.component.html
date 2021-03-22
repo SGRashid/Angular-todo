@@ -1,7 +1,11 @@
 <div cdkDropList class="main" (cdkDropListDropped)="drop($event)">
     <div class="todo-item" *ngFor="let item of todoList" cdkDrag>
         <div class="todo-item-header">
-            <button class="btn" title="Закрыть задачу">&#10006;</button>
+            <button
+                class="btn"
+                title="Закрыть задачу"
+                (click)="closeTask(item)"
+            >&#10006;</button>
         </div>
         <div *cdkDragPlaceholder></div>
         <p class="todo-item-title">{{ item.title }}</p>

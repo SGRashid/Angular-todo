@@ -39,5 +39,16 @@ export class MainComponent implements OnInit {
     if (date.getTime() < this._threeDaysAfter.getTime()) return 'yellow'
     
     return '';
-  } 
+  }
+
+  closeTask(item: ITodoItem): void {
+    if (!item.isComplited) {
+      alert('Нельзя удалить незавершенную задачу');
+      return;
+    }
+    if (!confirm('Уверенны что хотите удалить задачу?')) return;
+    this.todoListService.deleteToDoItem(item);
+    this.todoList = this.todoListService.getTodoList();
+  }
+
 }

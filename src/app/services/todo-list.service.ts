@@ -27,7 +27,6 @@ export class TodoListService {
   public deleteToDoItem(item) {
     if (!item.isComplited) return;
     this._todoList = this._todoList.filter(elem => elem.id !== item.id);
-    console.log(42);
   }
 
   public addNewItem(item: ITodoItem): void {
