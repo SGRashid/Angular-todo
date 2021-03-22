@@ -1,9 +1,17 @@
 <div cdkDropList class="main" (cdkDropListDropped)="drop($event)">
     <div class="todo-item" *ngFor="let item of todoList" cdkDrag>
+        <div class="todo-item-header">
+            <button class="btn" title="Закрыть задачу">&#10006;</button>
+        </div>
         <div *cdkDragPlaceholder></div>
         <p class="todo-item-title">{{ item.title }}</p>
         <p class="todo-item-description">{{ item.description }}</p>
-        <p class="todo-item-date {{getDateCssClass(item.date)}}">{{ date.ru(item.date) }}</p>
+        <p class="todo-item-date">
+            <span class="{{getDateCssClass(item.date)}}">{{ date.ru(item.date) }}</span>
+            <span class="{{ item.isComplited ? 'green' : '' }}">
+                {{ item.isComplited ? 'Выполнено' : '' }}
+            </span>
+        </p>
         <p>
             <a [routerLink]="['todo-item', item.id]">Смотреть/Редактировать...</a>
         </p>
